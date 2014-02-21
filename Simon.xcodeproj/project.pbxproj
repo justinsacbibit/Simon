@@ -14,13 +14,16 @@
 		7044E27A18B6EE5100486835 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7044E27918B6EE5100486835 /* main.m */; };
 		7044E27E18B6EE5100486835 /* INFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7044E27D18B6EE5100486835 /* INFAppDelegate.m */; };
 		7044E28118B6EE5100486835 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7044E27F18B6EE5100486835 /* Main.storyboard */; };
-		7044E28418B6EE5100486835 /* INFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7044E28318B6EE5100486835 /* INFViewController.m */; };
 		7044E28618B6EE5100486835 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7044E28518B6EE5100486835 /* Images.xcassets */; };
 		7044E28D18B6EE5100486835 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7044E28C18B6EE5100486835 /* XCTest.framework */; };
 		7044E28E18B6EE5100486835 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7044E26D18B6EE5100486835 /* Foundation.framework */; };
 		7044E28F18B6EE5100486835 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7044E27118B6EE5100486835 /* UIKit.framework */; };
 		7044E29718B6EE5100486835 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7044E29518B6EE5100486835 /* InfoPlist.strings */; };
 		7044E29918B6EE5100486835 /* SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7044E29818B6EE5100486835 /* SimonTests.m */; };
+		70EAF62D18B6F4E200F06AD0 /* INFMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF62C18B6F4E200F06AD0 /* INFMainMenuViewController.m */; };
+		70EAF67618B6FE3600F06AD0 /* INFGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF67518B6FE3600F06AD0 /* INFGameViewController.m */; };
+		70EAF67918B6FE4300F06AD0 /* INFHighScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF67818B6FE4300F06AD0 /* INFHighScoreViewController.m */; };
+		70EAF67C18B6FFD300F06AD0 /* INFLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF67B18B6FFD300F06AD0 /* INFLevelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +48,20 @@
 		7044E27C18B6EE5100486835 /* INFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFAppDelegate.h; sourceTree = "<group>"; };
 		7044E27D18B6EE5100486835 /* INFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFAppDelegate.m; sourceTree = "<group>"; };
 		7044E28018B6EE5100486835 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7044E28218B6EE5100486835 /* INFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFViewController.h; sourceTree = "<group>"; };
-		7044E28318B6EE5100486835 /* INFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFViewController.m; sourceTree = "<group>"; };
 		7044E28518B6EE5100486835 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7044E28B18B6EE5100486835 /* SimonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7044E28C18B6EE5100486835 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7044E29418B6EE5100486835 /* SimonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimonTests-Info.plist"; sourceTree = "<group>"; };
 		7044E29618B6EE5100486835 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7044E29818B6EE5100486835 /* SimonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimonTests.m; sourceTree = "<group>"; };
+		70EAF62B18B6F4E200F06AD0 /* INFMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INFMainMenuViewController.h; sourceTree = "<group>"; };
+		70EAF62C18B6F4E200F06AD0 /* INFMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INFMainMenuViewController.m; sourceTree = "<group>"; };
+		70EAF67418B6FE3600F06AD0 /* INFGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INFGameViewController.h; sourceTree = "<group>"; };
+		70EAF67518B6FE3600F06AD0 /* INFGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INFGameViewController.m; sourceTree = "<group>"; };
+		70EAF67718B6FE4300F06AD0 /* INFHighScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INFHighScoreViewController.h; sourceTree = "<group>"; };
+		70EAF67818B6FE4300F06AD0 /* INFHighScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INFHighScoreViewController.m; sourceTree = "<group>"; };
+		70EAF67A18B6FFD300F06AD0 /* INFLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INFLevelViewController.h; sourceTree = "<group>"; };
+		70EAF67B18B6FFD300F06AD0 /* INFLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INFLevelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +124,14 @@
 				7044E27C18B6EE5100486835 /* INFAppDelegate.h */,
 				7044E27D18B6EE5100486835 /* INFAppDelegate.m */,
 				7044E27F18B6EE5100486835 /* Main.storyboard */,
-				7044E28218B6EE5100486835 /* INFViewController.h */,
-				7044E28318B6EE5100486835 /* INFViewController.m */,
+				70EAF62B18B6F4E200F06AD0 /* INFMainMenuViewController.h */,
+				70EAF62C18B6F4E200F06AD0 /* INFMainMenuViewController.m */,
+				70EAF67A18B6FFD300F06AD0 /* INFLevelViewController.h */,
+				70EAF67B18B6FFD300F06AD0 /* INFLevelViewController.m */,
+				70EAF67418B6FE3600F06AD0 /* INFGameViewController.h */,
+				70EAF67518B6FE3600F06AD0 /* INFGameViewController.m */,
+				70EAF67718B6FE4300F06AD0 /* INFHighScoreViewController.h */,
+				70EAF67818B6FE4300F06AD0 /* INFHighScoreViewController.m */,
 				7044E28518B6EE5100486835 /* Images.xcassets */,
 				7044E27418B6EE5100486835 /* Supporting Files */,
 			);
@@ -250,9 +265,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70EAF67918B6FE4300F06AD0 /* INFHighScoreViewController.m in Sources */,
+				70EAF67618B6FE3600F06AD0 /* INFGameViewController.m in Sources */,
+				70EAF62D18B6F4E200F06AD0 /* INFMainMenuViewController.m in Sources */,
+				70EAF67C18B6FFD300F06AD0 /* INFLevelViewController.m in Sources */,
 				7044E27E18B6EE5100486835 /* INFAppDelegate.m in Sources */,
 				7044E27A18B6EE5100486835 /* main.m in Sources */,
-				7044E28418B6EE5100486835 /* INFViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +479,7 @@
 				7044E29E18B6EE5100486835 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7044E29F18B6EE5100486835 /* Build configuration list for PBXNativeTarget "SimonTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +488,7 @@
 				7044E2A118B6EE5100486835 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

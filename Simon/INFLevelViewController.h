@@ -1,5 +1,5 @@
 //
-//  INFViewController.h
+//  INFLevelViewController.h
 //  Simon
 //
 //  Created by Justin Sacbibit on 2/20/2014.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface INFViewController : UIViewController
+@interface INFLevelViewController : UIViewController
 
 @end
