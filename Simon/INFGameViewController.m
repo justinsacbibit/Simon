@@ -15,6 +15,7 @@
     UIView *currentView;
     BOOL gameRunning;
     int currentIndex;
+    int buttonPressed;
 }
 @end
 
@@ -74,7 +75,7 @@
     if (currentView == _viewFour) [currentView setBackgroundColor:[UIColor colorWithRed:0.0 green:(191/255.0) blue:1.0 alpha:1]];
     
     // go back to the old colour after a certain amount of time
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeBackView:) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:.25 target:self selector:@selector(changeBackView:) userInfo:nil repeats:NO];
 }
 
 - (void)changeBackView:(UIView *)view
@@ -88,7 +89,7 @@
     // if we are not at the end of the array, then light up the next view
     if (currentIndex < [_pattern count]) {
         currentView = [views objectAtIndex:[_pattern[currentIndex] integerValue]];
-        [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(lightUpView:) userInfo:nil repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:.25 target:self selector:@selector(lightUpView:) userInfo:nil repeats:NO];
     }
     
     // if we are at the end of the array, then we are done, and the player can press the buttons
@@ -104,7 +105,7 @@
 {
     NSNumber *currentBoxNumber = _pattern[currentIndex];
     currentView = [views objectAtIndex:[currentBoxNumber integerValue]];
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(lightUpView:) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:.25 target:self selector:@selector(lightUpView:) userInfo:nil repeats:NO];
 }
 
 // the player has selected this button
@@ -113,7 +114,38 @@
         
         [currentView setBackgroundColor:tempColour];
         
+        // check if the button corresponds to the pattern
+        if (buttonPressed == [_pattern[currentIndex] integerValue]) {
+            // check if sequence is completed
+            if (currentIndex + 1 == [_pattern count]) {
+                [_gameButton setEnabled:YES];
+                
+                // increase score
+                _currentScore++;
+                _scoreLabel.text = [NSString stringWithFormat:@"%d", _currentScore];
+                // check if new score is greater than high score
+                if (_currentScore >= _highScore) {
+                    _highScore = _currentScore;
+                    [_highScoreLabel setText:[NSString stringWithFormat:@"%d",_highScore]];
+                }
+                
+                currentIndex=0;
+                gameRunning = NO;
+            }
+            else currentIndex++;
+        }
         
+        // if not, it's wrong
+        else {
+            // wrong popup
+            UIAlertView *wrong = [[UIAlertView alloc] initWithTitle:@"Oops!" message:@"You pressed the wrong button!" delegate:self cancelButtonTitle:@"Okay :(" otherButtonTitles:nil, nil];
+            [wrong show];
+            
+            // reset
+            gameRunning = NO;
+            [_gameButton setEnabled:YES];
+            [_gameButton setTitle:@"Start Over" forState:UIControlStateNormal];
+        }
     }
 }
 
@@ -121,10 +153,22 @@
 - (IBAction)buttonDown:(id)sender {
     if (gameRunning && !_patternPlaying) {
         // change the currentView
-        if ([[sender currentTitle] isEqualToString:@"buttonOne"]) currentView = [views objectAtIndex:0];
-        if ([[sender currentTitle] isEqualToString:@"buttonTwo"]) currentView = [views objectAtIndex:1];
-        if ([[sender currentTitle] isEqualToString:@"buttonThree"]) currentView = [views objectAtIndex:2];
-        if ([[sender currentTitle] isEqualToString:@"buttonFour"]) currentView = [views objectAtIndex:3];
+        if ([[sender currentTitle] isEqualToString:@"buttonOne"]) {
+            currentView = [views objectAtIndex:0];
+            buttonPressed = 0;
+        }
+        if ([[sender currentTitle] isEqualToString:@"buttonTwo"]) {
+            currentView = [views objectAtIndex:1];
+            buttonPressed = 1;
+        }
+        if ([[sender currentTitle] isEqualToString:@"buttonThree"]) {
+            currentView = [views objectAtIndex:2];
+            buttonPressed = 2;
+        }
+        if ([[sender currentTitle] isEqualToString:@"buttonFour"]) {
+            currentView = [views objectAtIndex:3];
+            buttonPressed = 3;
+        }
         
         tempColour = [currentView backgroundColor];
         if (currentView == _viewOne) [currentView setBackgroundColor:[UIColor greenColor]];
@@ -135,7 +179,7 @@
     }
 }
 
-// the lpayer has not selected the button, so it must revert colour with no further logic
+// the player has not selected the button, so it must revert colour with no further logic
 - (IBAction)buttonUpOutside:(id)sender {
     if (gameRunning && !_patternPlaying) {
         
@@ -156,8 +200,42 @@
     // start next round
     else if (_currentScore != 0 && [_gameButton.titleLabel.text isEqual: @"Next Round"]) {
         
+        // generate a random number from 1 to 4
+        int randomNumber = arc4random() % 4;
+        [_pattern addObject:[NSNumber numberWithInt:randomNumber]];
+        
+        // use pattern array to light up the sequence
+        [self beginSequence];
+        [sender setEnabled:NO];
+        _patternPlaying = YES;
+        gameRunning = YES;
+        
+    }
+    // reset
+    else if ([_gameButton.titleLabel.text isEqualToString:@"Start Over"]) {
+        
+        currentIndex = 0;
+        _currentScore = 0;
+        _scoreLabel.text = [NSString stringWithFormat:@"%d",_currentScore];
+        [_pattern removeAllObjects];
+        
+        // generate a random number from 1 to 4
+        int randomNumber = arc4random() % 4;
+        [_pattern addObject:[NSNumber numberWithInt:randomNumber]];
         
         
+        // automatically start new round
+        /*
+        gameRunning = YES;
+        _patternPlaying = YES;
+        
+        [self beginSequence];
+        [sender setTitle:@"Next Round" forState:UIControlStateNormal];
+        [sender setEnabled:NO];
+         */
+        
+        // need to click start
+        [sender setTitle:@"Start" forState:UIControlStateNormal];
     }
 }
 @end
