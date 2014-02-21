@@ -23,7 +23,6 @@
 		70EAF62D18B6F4E200F06AD0 /* INFMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF62C18B6F4E200F06AD0 /* INFMainMenuViewController.m */; };
 		70EAF67618B6FE3600F06AD0 /* INFGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF67518B6FE3600F06AD0 /* INFGameViewController.m */; };
 		70EAF67918B6FE4300F06AD0 /* INFHighScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF67818B6FE4300F06AD0 /* INFHighScoreViewController.m */; };
-		70EAF67C18B6FFD300F06AD0 /* INFLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF67B18B6FFD300F06AD0 /* INFLevelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +59,6 @@
 		70EAF67518B6FE3600F06AD0 /* INFGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INFGameViewController.m; sourceTree = "<group>"; };
 		70EAF67718B6FE4300F06AD0 /* INFHighScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INFHighScoreViewController.h; sourceTree = "<group>"; };
 		70EAF67818B6FE4300F06AD0 /* INFHighScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INFHighScoreViewController.m; sourceTree = "<group>"; };
-		70EAF67A18B6FFD300F06AD0 /* INFLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INFLevelViewController.h; sourceTree = "<group>"; };
-		70EAF67B18B6FFD300F06AD0 /* INFLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INFLevelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +123,6 @@
 				7044E27F18B6EE5100486835 /* Main.storyboard */,
 				70EAF62B18B6F4E200F06AD0 /* INFMainMenuViewController.h */,
 				70EAF62C18B6F4E200F06AD0 /* INFMainMenuViewController.m */,
-				70EAF67A18B6FFD300F06AD0 /* INFLevelViewController.h */,
-				70EAF67B18B6FFD300F06AD0 /* INFLevelViewController.m */,
 				70EAF67418B6FE3600F06AD0 /* INFGameViewController.h */,
 				70EAF67518B6FE3600F06AD0 /* INFGameViewController.m */,
 				70EAF67718B6FE4300F06AD0 /* INFHighScoreViewController.h */,
@@ -268,7 +263,6 @@
 				70EAF67918B6FE4300F06AD0 /* INFHighScoreViewController.m in Sources */,
 				70EAF67618B6FE3600F06AD0 /* INFGameViewController.m in Sources */,
 				70EAF62D18B6F4E200F06AD0 /* INFMainMenuViewController.m in Sources */,
-				70EAF67C18B6FFD300F06AD0 /* INFLevelViewController.m in Sources */,
 				7044E27E18B6EE5100486835 /* INFAppDelegate.m in Sources */,
 				7044E27A18B6EE5100486835 /* main.m in Sources */,
 			);
