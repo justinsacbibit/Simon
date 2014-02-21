@@ -104,7 +104,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmX-Vl-9az">
                                         <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
+                                        <state key="normal" title="buttonOne">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -123,13 +124,14 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jsO-Lq-bsx">
                                         <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
+                                        <state key="normal" title="buttonThree">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="buttonDown:" destination="2aY-j9-jbL" eventType="touchUpInside" id="gGv-Fs-dEN"/>
+                                            <action selector="buttonDown:" destination="2aY-j9-jbL" eventType="touchDown" id="brt-Vp-zBU"/>
                                             <action selector="buttonUpInside:" destination="2aY-j9-jbL" eventType="touchUpInside" id="eNB-8N-gn1"/>
-                                            <action selector="buttonUpOutside:" destination="2aY-j9-jbL" eventType="touchUpInside" id="6pF-ve-soJ"/>
+                                            <action selector="buttonUpOutside:" destination="2aY-j9-jbL" eventType="touchUpOutside" id="GRj-bF-baa"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -142,13 +144,14 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBw-qI-7S3">
                                         <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
+                                        <state key="normal" title="buttonTwo">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="buttonDown:" destination="2aY-j9-jbL" eventType="touchUpInside" id="Pdl-VM-jqe"/>
+                                            <action selector="buttonDown:" destination="2aY-j9-jbL" eventType="touchDown" id="Iq7-2Y-vQq"/>
                                             <action selector="buttonUpInside:" destination="2aY-j9-jbL" eventType="touchUpInside" id="09O-w9-eIO"/>
-                                            <action selector="buttonUpOutside:" destination="2aY-j9-jbL" eventType="touchUpInside" id="xRe-P4-Cur"/>
+                                            <action selector="buttonUpOutside:" destination="2aY-j9-jbL" eventType="touchUpOutside" id="dnX-Bz-cDY"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -161,13 +164,14 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCI-zA-ZsU">
                                         <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
+                                        <state key="normal" title="buttonFour">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="buttonDown:" destination="2aY-j9-jbL" eventType="touchUpInside" id="olj-0S-Avm"/>
+                                            <action selector="buttonDown:" destination="2aY-j9-jbL" eventType="touchDown" id="qS7-FD-fV9"/>
                                             <action selector="buttonUpInside:" destination="2aY-j9-jbL" eventType="touchUpInside" id="Akg-mM-srt"/>
-                                            <action selector="buttonUpOutside:" destination="2aY-j9-jbL" eventType="touchUpInside" id="gJ0-ps-Whe"/>
+                                            <action selector="buttonUpOutside:" destination="2aY-j9-jbL" eventType="touchUpOutside" id="aJF-sm-zhb"/>
                                         </connections>
                                     </button>
                                 </subviews>

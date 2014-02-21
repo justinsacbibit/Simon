@@ -14,6 +14,7 @@
     NSArray *views;
     UIView *currentView;
     BOOL gameRunning;
+    int currentIndex;
 }
 @end
 
@@ -37,15 +38,23 @@
     _pattern = [[NSMutableArray alloc] init];
     [_pattern addObject:[NSNumber numberWithInt:randomNumber]];
     
-    randomNumber = arc4random() % 4;
-    [_pattern addObject:[NSNumber numberWithInteger:randomNumber]];
+    /*
+    // testing
+        for (int i = 0; i < 8; i++){
+        randomNumber = arc4random() % 4;
+        [_pattern addObject:[NSNumber numberWithInteger:randomNumber]];
+    }
+    */
     
     // additional setup
     _patternPlaying = NO;
     _currentScore = 0;
     _scoreLabel.text = [NSString stringWithFormat:@"%d",_currentScore];
-    views = @[_viewOne,_viewTwo,_viewThree,_viewFour];
     gameRunning = NO;
+    currentIndex = 0;
+    
+    // initialize views array for use of changing "currentView"
+    views = @[_viewOne,_viewTwo,_viewThree,_viewFour];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,45 +64,82 @@
 
 - (void)lightUpView:(UIView *)view
 {
+    // store the old colour of the view to be lit up
     tempColour = [currentView backgroundColor];
+    
+    // depending on the current view, change the colour to something brighter
     if (currentView == _viewOne) [currentView setBackgroundColor:[UIColor greenColor]];
     if (currentView == _viewTwo) [currentView setBackgroundColor:[UIColor redColor]];
     if (currentView == _viewThree) [currentView setBackgroundColor:[UIColor yellowColor]];
     if (currentView == _viewFour) [currentView setBackgroundColor:[UIColor colorWithRed:0.0 green:(191/255.0) blue:1.0 alpha:1]];
+    
+    // go back to the old colour after a certain amount of time
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeBackView:) userInfo:nil repeats:NO];
 }
 
 - (void)changeBackView:(UIView *)view
 {
+    // change back to the old colour
     [currentView setBackgroundColor:tempColour];
+    
+    // increase the current index for iterating over the patterns array
+    currentIndex++;
+    
+    // if we are not at the end of the array, then light up the next view
+    if (currentIndex < [_pattern count]) {
+        currentView = [views objectAtIndex:[_pattern[currentIndex] integerValue]];
+        [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(lightUpView:) userInfo:nil repeats:NO];
+    }
+    
+    // if we are at the end of the array, then we are done, and the player can press the buttons
+    else {
+        _patternPlaying = NO;
+        
+        // set currentIndex to 0 for comparisons with the pattern array
+        currentIndex = 0;
+    }
 }
 
 - (void)beginSequence
 {
-    for (int i = 0; i < [_pattern count]; i++) {
-        
-        NSNumber *currentBoxNumber = _pattern[i];
-        currentView = [views objectAtIndex:[currentBoxNumber integerValue]];
-        [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(lightUpView:) userInfo:nil repeats:NO];
-    }
-    NSLog(@"gg");
-    _patternPlaying = NO;
+    NSNumber *currentBoxNumber = _pattern[currentIndex];
+    currentView = [views objectAtIndex:[currentBoxNumber integerValue]];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(lightUpView:) userInfo:nil repeats:NO];
 }
 
+// the player has selected this button
 - (IBAction)buttonUpInside:(id)sender {
     if (gameRunning && !_patternPlaying) {
         
-    }
-}
-
-- (IBAction)buttonDown:(id)sender {
-    if (gameRunning && !_patternPlaying) {
+        [currentView setBackgroundColor:tempColour];
+        
         
     }
 }
 
+// the player has touched the button, so it must light up
+- (IBAction)buttonDown:(id)sender {
+    if (gameRunning && !_patternPlaying) {
+        // change the currentView
+        if ([[sender currentTitle] isEqualToString:@"buttonOne"]) currentView = [views objectAtIndex:0];
+        if ([[sender currentTitle] isEqualToString:@"buttonTwo"]) currentView = [views objectAtIndex:1];
+        if ([[sender currentTitle] isEqualToString:@"buttonThree"]) currentView = [views objectAtIndex:2];
+        if ([[sender currentTitle] isEqualToString:@"buttonFour"]) currentView = [views objectAtIndex:3];
+        
+        tempColour = [currentView backgroundColor];
+        if (currentView == _viewOne) [currentView setBackgroundColor:[UIColor greenColor]];
+        if (currentView == _viewTwo) [currentView setBackgroundColor:[UIColor redColor]];
+        if (currentView == _viewThree) [currentView setBackgroundColor:[UIColor yellowColor]];
+        if (currentView == _viewFour) [currentView setBackgroundColor:[UIColor colorWithRed:0.0 green:(191/255.0) blue:1.0 alpha:1]];
+        
+    }
+}
+
+// the lpayer has not selected the button, so it must revert colour with no further logic
 - (IBAction)buttonUpOutside:(id)sender {
     if (gameRunning && !_patternPlaying) {
+        
+        [currentView setBackgroundColor:tempColour];
         
     }
 }
