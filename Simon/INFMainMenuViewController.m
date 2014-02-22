@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.alpha = 0;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -46,25 +48,30 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"newGame"] || [segue.identifier isEqualToString:@"resumeGame"]) {
+    if ([segue.identifier isEqualToString:@"newGameManualSegue"] || [segue.identifier isEqualToString:@"resumeGame"]) {
         
         INFGameViewController *destinationViewController = segue.destinationViewController;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         destinationViewController.pattern = [[NSMutableArray alloc] init];
         
         // start a new game
-        if ([[sender currentTitle] isEqualToString:@"New Game"]) {
+        if ([segue.identifier isEqualToString:@"newGameManualSegue"]) {
             
+            
+            // reset everything
             destinationViewController.currentScore = 0;
+            [defaults setInteger:0 forKey:@"currentScore"];
             
             // generate a random number from 1 to 4
             int randomNumber = arc4random() % 4;
             [destinationViewController.pattern addObject:[NSNumber numberWithInt:randomNumber]];
             
+            [defaults setObject:destinationViewController.pattern forKey:@"pattern"];
+            [defaults synchronize];
         }
         
         // resume
-        if ([[sender currentTitle] isEqualToString:@"Resume"]) {
+        if ([segue.identifier isEqualToString:@"resumeGame"]) {
             
             destinationViewController.currentScore = [defaults integerForKey:@"currentScore"];
             [destinationViewController.pattern addObjectsFromArray:[defaults objectForKey:@"pattern"]];
@@ -76,7 +83,19 @@
 
 - (IBAction)unwindToMainMenu:(UIStoryboardSegue *)segue
 {
-    
+    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.alpha = 0;
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self performSegueWithIdentifier:@"newGameManualSegue" sender:self];
+    }
+}
+
+- (IBAction)newGameButtonPressed:(id)sender {
+    UIAlertView *check = [[UIAlertView alloc] initWithTitle:@"New Game" message:@"Are you sure you want to start a new game?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    [check show];
+}
 @end

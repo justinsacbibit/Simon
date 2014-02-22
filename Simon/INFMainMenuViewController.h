@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface INFMainMenuViewController : UIViewController
+@interface INFMainMenuViewController : UIViewController <UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *resumeButton;
+- (IBAction)newGameButtonPressed:(id)sender;
 
 @end

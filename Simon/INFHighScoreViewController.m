@@ -27,7 +27,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.alpha = 1;
 }
+
 
 - (void)didReceiveMemoryWarning
 {

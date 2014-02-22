@@ -137,11 +137,8 @@
                 
                 // generate a random number from 1 to 4
                 int randomNumber = arc4random() % 4;
-                NSLog(@"prepare");
                 [_pattern addObject:[NSNumber numberWithInt:randomNumber]];
-                NSLog(@"added");
                 [[NSUserDefaults standardUserDefaults] setObject:_pattern forKey:@"pattern"];
-                NSLog(@"set");
             }
             else currentIndex++;
         }

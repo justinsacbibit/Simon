@@ -40,7 +40,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="YVB-v1-LSb" kind="push" id="fjX-dC-9HM"/>
+                                    <segue destination="YVB-v1-LSb" kind="push" id="3m0-E7-qhF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlP-t8-dEc">
@@ -57,7 +57,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2aY-j9-jbL" kind="push" identifier="newGame" id="d18-2a-Xgd"/>
+                                    <action selector="newGameButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wK5-hF-g0S"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -66,13 +66,14 @@
                     <navigationItem key="navigationItem" id="zRS-fU-BOV"/>
                     <connections>
                         <outlet property="resumeButton" destination="Nj9-lP-yLf" id="puH-Vo-VKS"/>
+                        <segue destination="2aY-j9-jbL" kind="push" identifier="newGameManualSegue" id="DAA-uY-QTJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="731" y="5"/>
+            <point key="canvasLocation" x="515" y="275"/>
         </scene>
-        <!--High Score View Controller-->
+        <!--High Score View Controller - High Scores-->
         <scene sceneID="64y-u4-ay7">
             <objects>
                 <viewController id="YVB-v1-LSb" customClass="INFHighScoreViewController" sceneMemberID="viewController">
@@ -83,13 +84,38 @@
                     <view key="view" contentMode="scaleToFill" id="vbl-ZQ-Z0B">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ycs-Q1-cO9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="highScoreCell" id="aTE-6v-G8E">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aTE-6v-G8E">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="fm7-94-BfM"/>
+                    <navigationItem key="navigationItem" title="High Scores" id="fm7-94-BfM">
+                        <barButtonItem key="leftBarButtonItem" title="Main Menu" id="fLl-ry-hnX">
+                            <connections>
+                                <segue destination="a9U-nb-i1p" kind="unwind" unwindAction="unwindToMainMenu:" id="nq0-Y5-deH"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="7Oz-JK-PGR"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXf-Td-PLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="a9U-nb-i1p" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1088" y="613"/>
+            <point key="canvasLocation" x="1110" y="651"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="OOR-yz-pug">
@@ -249,7 +275,7 @@
         <!--Navigation Controller-->
         <scene sceneID="gid-wY-fMp">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Rgt-Fa-Gi7" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Rgt-Fa-Gi7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RBX-og-nym">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -262,7 +288,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eti-Vy-Qw4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="364" y="5"/>
+            <point key="canvasLocation" x="148" y="275"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -271,6 +297,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="d18-2a-Xgd"/>
+        <segue reference="DAA-uY-QTJ"/>
     </inferredMetricsTieBreakers>
 </document>
