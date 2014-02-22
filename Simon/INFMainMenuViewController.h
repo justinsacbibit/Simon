@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface INFMainMenuViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIButton *resumeButton;
 
 @end

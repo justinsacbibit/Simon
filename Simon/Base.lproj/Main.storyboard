@@ -30,7 +30,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2aY-j9-jbL" kind="push" id="Lsq-C3-4e4"/>
+                                    <segue destination="2aY-j9-jbL" kind="push" identifier="resumeGame" id="Lsq-C3-4e4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6az-vi-MFV">
@@ -57,13 +57,16 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2aY-j9-jbL" kind="push" id="d18-2a-Xgd"/>
+                                    <segue destination="2aY-j9-jbL" kind="push" identifier="newGame" id="d18-2a-Xgd"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="zRS-fU-BOV"/>
+                    <connections>
+                        <outlet property="resumeButton" destination="Nj9-lP-yLf" id="puH-Vo-VKS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

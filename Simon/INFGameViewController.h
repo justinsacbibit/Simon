@@ -10,9 +10,11 @@
 
 @interface INFGameViewController : UIViewController
 
+// save for resuming
 @property (strong, nonatomic) NSMutableArray *pattern;      // array for the pattern
-@property (nonatomic) BOOL patternPlaying;                  // is the pattern being displayed?
+
 @property (nonatomic) int currentScore;                     // current score/round
+@property (nonatomic) BOOL patternPlaying;                  // is the pattern being displayed?
 @property (nonatomic) int highScore;                        // all time high score of all users
 
 // pointers to views in order to change their colours

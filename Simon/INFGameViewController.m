@@ -34,10 +34,6 @@
 {
     [super viewDidLoad];
     
-    // generate a random number from 1 to 4
-    int randomNumber = arc4random() % 4;
-    _pattern = [[NSMutableArray alloc] init];
-    [_pattern addObject:[NSNumber numberWithInt:randomNumber]];
     
     /*
     // testing
@@ -48,9 +44,10 @@
     */
     
     // additional setup
+    //_currentScore = 0;
     _patternPlaying = NO;
-    _currentScore = 0;
     _scoreLabel.text = [NSString stringWithFormat:@"%d",_currentScore];
+    _highScoreLabel.text = [NSString stringWithFormat:@"%d",_highScore];
     gameRunning = NO;
     currentIndex = 0;
     
@@ -129,8 +126,22 @@
                     [_highScoreLabel setText:[NSString stringWithFormat:@"%d",_highScore]];
                 }
                 
+                // save state
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setInteger:_currentScore forKey:@"currentScore"];
+                [defaults setInteger:_highScore forKey:@"highScore"];
+                [defaults synchronize];
+                
                 currentIndex=0;
                 gameRunning = NO;
+                
+                // generate a random number from 1 to 4
+                int randomNumber = arc4random() % 4;
+                NSLog(@"prepare");
+                [_pattern addObject:[NSNumber numberWithInt:randomNumber]];
+                NSLog(@"added");
+                [[NSUserDefaults standardUserDefaults] setObject:_pattern forKey:@"pattern"];
+                NSLog(@"set");
             }
             else currentIndex++;
         }
@@ -145,6 +156,12 @@
             gameRunning = NO;
             [_gameButton setEnabled:YES];
             [_gameButton setTitle:@"Start Over" forState:UIControlStateNormal];
+            
+            // reflect changes in userdefaults
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setInteger:0 forKey:@"currentScore"];
+            [_pattern removeAllObjects];
+            [defaults setObject:_pattern forKey:@"pattern"];
         }
     }
 }
@@ -190,7 +207,14 @@
 
 - (IBAction)startButtonPressed:(id)sender {
     // start game if game is not running
-    if (_currentScore == 0 && [_gameButton.titleLabel.text  isEqual: @"Start"]) {
+    if ([_gameButton.titleLabel.text  isEqual: @"Start"]) {
+        
+        // check if pattern array is empty
+        if ([_pattern count] == 0) {
+            int randomNumber = arc4random() % 4;
+            [_pattern addObject:[NSNumber numberWithInt:randomNumber]];
+        }
+        
         gameRunning = YES;
         _patternPlaying = YES;
         [self beginSequence];
@@ -199,10 +223,6 @@
     }
     // start next round
     else if (_currentScore != 0 && [_gameButton.titleLabel.text isEqual: @"Next Round"]) {
-        
-        // generate a random number from 1 to 4
-        int randomNumber = arc4random() % 4;
-        [_pattern addObject:[NSNumber numberWithInt:randomNumber]];
         
         // use pattern array to light up the sequence
         [self beginSequence];
@@ -217,11 +237,12 @@
         currentIndex = 0;
         _currentScore = 0;
         _scoreLabel.text = [NSString stringWithFormat:@"%d",_currentScore];
-        [_pattern removeAllObjects];
+        //[_pattern removeAllObjects];
         
         // generate a random number from 1 to 4
         int randomNumber = arc4random() % 4;
         [_pattern addObject:[NSNumber numberWithInt:randomNumber]];
+        [[NSUserDefaults standardUserDefaults] setObject:_pattern forKey:@"pattern"];
         
         
         // automatically start new round
