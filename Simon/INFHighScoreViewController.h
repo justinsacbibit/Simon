@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface INFHighScoreViewController : UIViewController
+@interface INFHighScoreViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *highScoreTableView;
 
 @end

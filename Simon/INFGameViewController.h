@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface INFGameViewController : UIViewController
+@interface INFGameViewController : UIViewController <UIAlertViewDelegate>
 
 // save for resuming
 @property (strong, nonatomic) NSMutableArray *pattern;      // array for the pattern

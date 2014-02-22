@@ -7,6 +7,8 @@
 //
 
 #import "INFGameViewController.h"
+#import "INFHighScore.h"
+#import "INFHighScoreList.h"
 
 @interface INFGameViewController ()
 {
@@ -14,8 +16,11 @@
     NSArray *views;
     UIView *currentView;
     BOOL gameRunning;
+    BOOL highScoreAchieved;
     int currentIndex;
     int buttonPressed;
+    NSUserDefaults *defaults;
+    INFHighScoreList *highScoreList;
 }
 @end
 
@@ -45,7 +50,10 @@
     
     // additional setup
     //_currentScore = 0;
+    defaults = [NSUserDefaults standardUserDefaults];
+    highScoreList = [defaults objectForKey:@"highScoreList"];
     _patternPlaying = NO;
+    highScoreAchieved = NO;
     _scoreLabel.text = [NSString stringWithFormat:@"%d",_currentScore];
     _highScoreLabel.text = [NSString stringWithFormat:@"%d",_highScore];
     gameRunning = NO;
@@ -124,10 +132,10 @@
                 if (_currentScore >= _highScore) {
                     _highScore = _currentScore;
                     [_highScoreLabel setText:[NSString stringWithFormat:@"%d",_highScore]];
+                    highScoreAchieved = YES;
                 }
                 
                 // save state
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setInteger:_currentScore forKey:@"currentScore"];
                 [defaults setInteger:_highScore forKey:@"highScore"];
                 [defaults synchronize];
@@ -155,11 +163,24 @@
             [_gameButton setTitle:@"Start Over" forState:UIControlStateNormal];
             
             // reflect changes in userdefaults
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setInteger:0 forKey:@"currentScore"];
             [_pattern removeAllObjects];
             [defaults setObject:_pattern forKey:@"pattern"];
         }
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    // if high score
+    if (highScoreAchieved) {
+        UIAlertView *addHighScore = [[UIAlertView alloc] initWithTitle:@"Congratulations!" message:@"You just got a new high score! Enter your name." delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil, nil];
+        addHighScore.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [addHighScore show];
+        [highScoreList addNewHighScore:self.currentScore byPlayer:[addHighScore textFieldAtIndex:0].text];
+        [defaults setObject:highScoreList forKey:@"highScoreList"];
+        [defaults synchronize];
+        highScoreAchieved = NO;
     }
 }
 
@@ -212,6 +233,7 @@
             [_pattern addObject:[NSNumber numberWithInt:randomNumber]];
         }
         
+        highScoreAchieved = NO;
         gameRunning = YES;
         _patternPlaying = YES;
         [self beginSequence];
@@ -230,7 +252,7 @@
     }
     // reset
     else if ([_gameButton.titleLabel.text isEqualToString:@"Start Over"]) {
-        
+        highScoreAchieved = NO;
         currentIndex = 0;
         _currentScore = 0;
         _scoreLabel.text = [NSString stringWithFormat:@"%d",_currentScore];

@@ -95,6 +95,7 @@
 }
 
 - (IBAction)newGameButtonPressed:(id)sender {
+#warning remove popup on first play
     UIAlertView *check = [[UIAlertView alloc] initWithTitle:@"New Game" message:@"Are you sure you want to start a new game?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
     [check show];
 }
