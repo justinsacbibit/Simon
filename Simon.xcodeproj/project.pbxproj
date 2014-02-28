@@ -23,8 +23,6 @@
 		70EAF62D18B6F4E200F06AD0 /* INFMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF62C18B6F4E200F06AD0 /* INFMainMenuViewController.m */; };
 		70EAF67618B6FE3600F06AD0 /* INFGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF67518B6FE3600F06AD0 /* INFGameViewController.m */; };
 		70EAF67918B6FE4300F06AD0 /* INFHighScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF67818B6FE4300F06AD0 /* INFHighScoreViewController.m */; };
-		70EAF67F18B89AFB00F06AD0 /* INFHighScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF67E18B89AFB00F06AD0 /* INFHighScore.m */; };
-		70EAF68218B89CB200F06AD0 /* INFHighScoreList.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF68118B89CB200F06AD0 /* INFHighScoreList.m */; };
 		70EAF68418B89FD000F06AD0 /* HighScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70EAF68318B89FD000F06AD0 /* HighScoreCell.xib */; };
 		70EAF68718B8A00900F06AD0 /* INFHighScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EAF68618B8A00900F06AD0 /* INFHighScoreCell.m */; };
 /* End PBXBuildFile section */
@@ -63,10 +61,6 @@
 		70EAF67518B6FE3600F06AD0 /* INFGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INFGameViewController.m; sourceTree = "<group>"; };
 		70EAF67718B6FE4300F06AD0 /* INFHighScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INFHighScoreViewController.h; sourceTree = "<group>"; };
 		70EAF67818B6FE4300F06AD0 /* INFHighScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INFHighScoreViewController.m; sourceTree = "<group>"; };
-		70EAF67D18B89AFB00F06AD0 /* INFHighScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INFHighScore.h; sourceTree = "<group>"; };
-		70EAF67E18B89AFB00F06AD0 /* INFHighScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INFHighScore.m; sourceTree = "<group>"; };
-		70EAF68018B89CB200F06AD0 /* INFHighScoreList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INFHighScoreList.h; sourceTree = "<group>"; };
-		70EAF68118B89CB200F06AD0 /* INFHighScoreList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INFHighScoreList.m; sourceTree = "<group>"; };
 		70EAF68318B89FD000F06AD0 /* HighScoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HighScoreCell.xib; sourceTree = "<group>"; };
 		70EAF68518B8A00900F06AD0 /* INFHighScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INFHighScoreCell.h; sourceTree = "<group>"; };
 		70EAF68618B8A00900F06AD0 /* INFHighScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INFHighScoreCell.m; sourceTree = "<group>"; };
@@ -135,10 +129,6 @@
 				70EAF68318B89FD000F06AD0 /* HighScoreCell.xib */,
 				70EAF68518B8A00900F06AD0 /* INFHighScoreCell.h */,
 				70EAF68618B8A00900F06AD0 /* INFHighScoreCell.m */,
-				70EAF67D18B89AFB00F06AD0 /* INFHighScore.h */,
-				70EAF67E18B89AFB00F06AD0 /* INFHighScore.m */,
-				70EAF68018B89CB200F06AD0 /* INFHighScoreList.h */,
-				70EAF68118B89CB200F06AD0 /* INFHighScoreList.m */,
 				70EAF62B18B6F4E200F06AD0 /* INFMainMenuViewController.h */,
 				70EAF62C18B6F4E200F06AD0 /* INFMainMenuViewController.m */,
 				70EAF67418B6FE3600F06AD0 /* INFGameViewController.h */,
@@ -279,12 +269,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70EAF68218B89CB200F06AD0 /* INFHighScoreList.m in Sources */,
 				70EAF67918B6FE4300F06AD0 /* INFHighScoreViewController.m in Sources */,
 				70EAF67618B6FE3600F06AD0 /* INFGameViewController.m in Sources */,
 				70EAF62D18B6F4E200F06AD0 /* INFMainMenuViewController.m in Sources */,
 				7044E27E18B6EE5100486835 /* INFAppDelegate.m in Sources */,
-				70EAF67F18B89AFB00F06AD0 /* INFHighScore.m in Sources */,
 				70EAF68718B8A00900F06AD0 /* INFHighScoreCell.m in Sources */,
 				7044E27A18B6EE5100486835 /* main.m in Sources */,
 			);

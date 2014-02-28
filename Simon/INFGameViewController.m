@@ -7,8 +7,6 @@
 //
 
 #import "INFGameViewController.h"
-#import "INFHighScore.h"
-#import "INFHighScoreList.h"
 
 @interface INFGameViewController ()
 {
@@ -22,6 +20,7 @@
     int buttonPressed;
     NSUserDefaults *defaults;
     NSMutableArray *highScores;
+    NSMutableArray *highScoreNames;
 }
 @end
 
@@ -40,19 +39,13 @@
 {
     [super viewDidLoad];
     
-    
-    /*
-    // testing
-        for (int i = 0; i < 8; i++){
-        randomNumber = arc4random() % 4;
-        [_pattern addObject:[NSNumber numberWithInteger:randomNumber]];
-    }
-    */
-    
     // additional setup
-    //_currentScore = 0;
     defaults = [NSUserDefaults standardUserDefaults];
-    highScores = [defaults objectForKey:@"highScores"];
+    highScores = [[NSMutableArray alloc] init];
+    highScoreNames = [[NSMutableArray alloc] init];
+    [highScores addObjectsFromArray:[defaults objectForKey:@"highScores"]];
+    [highScoreNames addObjectsFromArray:[defaults objectForKey:@"highScoreNames"]];
+    
     _patternPlaying = NO;
     highScoreAchieved = NO;
     inputtingName = NO;
@@ -168,26 +161,22 @@
             [defaults setInteger:0 forKey:@"currentScore"];
             [_pattern removeAllObjects];
             [defaults setObject:_pattern forKey:@"pattern"];
+            [defaults synchronize];
         }
     }
 }
 
 - (void) addNewHighScore:(int)score byPlayer:(NSString *)name
 {
-    NSLog(@"added %@",name);
-    INFHighScore *newHighScore = [[INFHighScore alloc] init];
-    newHighScore.name = name;
-    newHighScore.score = score;
     
-    // add to empty array
-    if ([highScores count] == 0) {
-        [highScores addObject:newHighScore];
-    }
+    [highScores addObject:[NSNumber numberWithInt:score]];
+    [highScoreNames addObject:name];
     
-    // else need to sort
-    else {
-        
-    }
+    [defaults setObject:highScores forKey:@"highScores"];
+    [defaults setObject:highScoreNames forKey:@"highScoreNames"];
+    [defaults synchronize];
+    
+    
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -281,23 +270,11 @@
         currentIndex = 0;
         _currentScore = 0;
         _scoreLabel.text = [NSString stringWithFormat:@"%d",_currentScore];
-        //[_pattern removeAllObjects];
         
         // generate a random number from 1 to 4
         int randomNumber = arc4random() % 4;
         [_pattern addObject:[NSNumber numberWithInt:randomNumber]];
         [[NSUserDefaults standardUserDefaults] setObject:_pattern forKey:@"pattern"];
-        
-        
-        // automatically start new round
-        /*
-        gameRunning = YES;
-        _patternPlaying = YES;
-        
-        [self beginSequence];
-        [sender setTitle:@"Next Round" forState:UIControlStateNormal];
-        [sender setEnabled:NO];
-         */
         
         // need to click start
         [sender setTitle:@"Start" forState:UIControlStateNormal];

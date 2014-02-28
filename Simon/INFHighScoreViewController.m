@@ -7,14 +7,13 @@
 //
 
 #import "INFHighScoreViewController.h"
-#import "INFHighScore.h"
-#import "INFHighScoreList.h"
 #import "INFHighScoreCell.h"
 
 @interface INFHighScoreViewController ()
 {
-    INFHighScoreList *highScoreList;
     NSUserDefaults *defaults;
+    NSArray *highScores;
+    NSArray *highScoreNames;
 }
 @end
 
@@ -36,14 +35,21 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.alpha = 1;
     
-    // testing, populate high scores
+    defaults = [NSUserDefaults standardUserDefaults];
+    highScores = [defaults objectForKey:@"highScores"];
+    highScoreNames = [defaults objectForKey:@"highScoreNames"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     defaults = [NSUserDefaults standardUserDefaults];
-    highScoreList = [defaults objectForKey:@"highScoreList"];
-    
+    highScores = [defaults objectForKey:@"highScores"];
+    highScoreNames = [defaults objectForKey:@"highScoreNames"];/*
+    NSLog([NSString stringWithFormat:@"%d",[highScores count]]);
+    if ([highScores count] > 0) {
+        NSLog(highScoreNames[0]);
+        NSLog([NSString stringWithFormat:@"%@",highScores[0]]);
+    }*/
 }
 
 
@@ -51,6 +57,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [highScores count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,22 +77,27 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    NSMutableArray *highScores = highScoreList.highScores;
-    INFHighScore *highScore = highScores[indexPath.row];
-    cell.nameLabel.text = highScore.name;
-    cell.scoreLabel.text = [NSString stringWithFormat:@"%d",highScore.score];
+    cell.nameLabel.text = [highScoreNames objectAtIndex:[highScoreNames count]-indexPath.row-1];
+    cell.scoreLabel.text = [NSString stringWithFormat:@"%@",[highScores objectAtIndex:[highScores count]-indexPath.row-1]];
     
     return cell;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    return [highScoreList.highScores count];
+    if (buttonIndex == 1) {
+        NSArray *empty = [[NSArray alloc] init];
+        [defaults setObject:empty forKey:@"highScores"];
+        [defaults setObject:empty forKey:@"highScoreNames"];
+        [defaults setInteger:0 forKey:@"highScore"];
+        [self viewDidAppear:NO];
+        [self.highScoreTableView reloadData];
+    }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
+- (IBAction)resetButton:(id)sender {
+    
+    UIAlertView *check = [[UIAlertView alloc] initWithTitle:@"Reset High Scores" message:@"Are you sure you want to reset high scores?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    [check show];
 }
-
 @end

@@ -8,8 +8,6 @@
 
 #import "INFMainMenuViewController.h"
 #import "INFGameViewController.h"
-#import "INFHighScoreList.h"
-#import "INFHighScore.h"
 
 @interface INFMainMenuViewController ()
 
@@ -36,7 +34,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"] == 0) {
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"] == 0 || [[NSUserDefaults standardUserDefaults] integerForKey:@"currentScore"] == 0) {
         [_resumeButton setHidden:YES];
     }
     else [_resumeButton setHidden:NO];
@@ -97,9 +95,9 @@
 
 - (IBAction)newGameButtonPressed:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *highScores = [defaults objectForKey:@"highScores"];
+    NSArray *highScores = [defaults objectForKey:@"highScores"];
     
-    if ([highScores count] > 0) {
+    if ([highScores count] > 0 && [defaults integerForKey:@"currentScore"] != 0) {
         UIAlertView *check = [[UIAlertView alloc] initWithTitle:@"New Game" message:@"Are you sure you want to start a new game?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
         [check show];
     }
