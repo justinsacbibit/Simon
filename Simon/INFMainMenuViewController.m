@@ -8,6 +8,8 @@
 
 #import "INFMainMenuViewController.h"
 #import "INFGameViewController.h"
+#import "INFHighScoreList.h"
+#import "INFHighScore.h"
 
 @interface INFMainMenuViewController ()
 
@@ -57,7 +59,6 @@
         // start a new game
         if ([segue.identifier isEqualToString:@"newGameManualSegue"]) {
             
-            
             // reset everything
             destinationViewController.currentScore = 0;
             [defaults setInteger:0 forKey:@"currentScore"];
@@ -95,8 +96,15 @@
 }
 
 - (IBAction)newGameButtonPressed:(id)sender {
-#warning remove popup on first play
-    UIAlertView *check = [[UIAlertView alloc] initWithTitle:@"New Game" message:@"Are you sure you want to start a new game?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-    [check show];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *highScores = [defaults objectForKey:@"highScores"];
+    
+    if ([highScores count] > 0) {
+        UIAlertView *check = [[UIAlertView alloc] initWithTitle:@"New Game" message:@"Are you sure you want to start a new game?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+        [check show];
+    }
+    else {
+        [self performSegueWithIdentifier:@"newGameManualSegue" sender:self];
+    }
 }
 @end

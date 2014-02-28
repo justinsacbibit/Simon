@@ -11,9 +11,7 @@
 
 @interface INFHighScoreList : NSObject
 
-@property (strong, nonatomic) INFHighScore *first;
-@property (strong, nonatomic) INFHighScore *last;
-@property (nonatomic) int numberOfHighScores;
+@property (strong, nonatomic) NSMutableArray *highScores;
 
 - (id) init;
 - (void) addNewHighScore:(int)score byPlayer:(NSString *)name;

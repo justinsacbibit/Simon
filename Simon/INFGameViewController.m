@@ -17,10 +17,11 @@
     UIView *currentView;
     BOOL gameRunning;
     BOOL highScoreAchieved;
+    BOOL inputtingName;
     int currentIndex;
     int buttonPressed;
     NSUserDefaults *defaults;
-    INFHighScoreList *highScoreList;
+    NSMutableArray *highScores;
 }
 @end
 
@@ -51,9 +52,10 @@
     // additional setup
     //_currentScore = 0;
     defaults = [NSUserDefaults standardUserDefaults];
-    highScoreList = [defaults objectForKey:@"highScoreList"];
+    highScores = [defaults objectForKey:@"highScores"];
     _patternPlaying = NO;
     highScoreAchieved = NO;
+    inputtingName = NO;
     _scoreLabel.text = [NSString stringWithFormat:@"%d",_currentScore];
     _highScoreLabel.text = [NSString stringWithFormat:@"%d",_highScore];
     gameRunning = NO;
@@ -170,17 +172,40 @@
     }
 }
 
+- (void) addNewHighScore:(int)score byPlayer:(NSString *)name
+{
+    NSLog(@"added %@",name);
+    INFHighScore *newHighScore = [[INFHighScore alloc] init];
+    newHighScore.name = name;
+    newHighScore.score = score;
+    
+    // add to empty array
+    if ([highScores count] == 0) {
+        [highScores addObject:newHighScore];
+    }
+    
+    // else need to sort
+    else {
+        
+    }
+}
+
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     // if high score
-    if (highScoreAchieved) {
+    if (highScoreAchieved&&[alertView.title isEqualToString:@"Oops!"]) {
         UIAlertView *addHighScore = [[UIAlertView alloc] initWithTitle:@"Congratulations!" message:@"You just got a new high score! Enter your name." delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil, nil];
         addHighScore.alertViewStyle = UIAlertViewStylePlainTextInput;
         [addHighScore show];
-        [highScoreList addNewHighScore:self.currentScore byPlayer:[addHighScore textFieldAtIndex:0].text];
-        [defaults setObject:highScoreList forKey:@"highScoreList"];
-        [defaults synchronize];
+        
         highScoreAchieved = NO;
+        inputtingName = YES;
+    }
+    if (inputtingName&&[alertView.title isEqualToString:@"Congratulations!"]) {
+        [self addNewHighScore:self.currentScore byPlayer:[alertView textFieldAtIndex:0].text];
+        [defaults setObject:highScores forKey:@"highScores"];
+        [defaults synchronize];
+        inputtingName = NO;
     }
 }
 

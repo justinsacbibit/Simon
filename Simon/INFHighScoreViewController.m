@@ -42,8 +42,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     defaults = [NSUserDefaults standardUserDefaults];
-    INFHighScoreList *temp = [defaults objectForKey:@"highScoreList"];
-    highScoreList = temp;
+    highScoreList = [defaults objectForKey:@"highScoreList"];
     
 }
 
@@ -62,19 +61,17 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    INFHighScore *temp = highScoreList.first;
-    for (int i = 0; i < indexPath.row; i++) {
-        temp = temp.next;
-    }
-    cell.nameLabel.text = temp.name;
-    cell.scoreLabel.text = [NSString stringWithFormat:@"%d",temp.score];
+    NSMutableArray *highScores = highScoreList.highScores;
+    INFHighScore *highScore = highScores[indexPath.row];
+    cell.nameLabel.text = highScore.name;
+    cell.scoreLabel.text = [NSString stringWithFormat:@"%d",highScore.score];
     
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return highScoreList.numberOfHighScores;
+    return [highScoreList.highScores count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -12,6 +12,5 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (nonatomic) int score;
-@property (strong, nonatomic) INFHighScore *next;
 
 @end
